@@ -1,0 +1,24 @@
+{
+    "name": "coercive/ajax",
+    "type": "library",
+    "description": "Coercive Ajax",
+    "homepage": "http://coercive.fr",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony Moral",
+            "email": "contact@coercive.fr",
+            "homepage": "http://coercive.fr"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ext-json": "*",
+        "coercive/headerstatus": "^1"
+    },
+    "autoload": {
+        "psr-4": { "Coercive\\Utility\\Ajax\\": "dist/" }
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable" : true
+}
