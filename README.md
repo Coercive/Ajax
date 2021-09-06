@@ -175,7 +175,21 @@ $response->setOptions([
     'otp2' => '2222',
     'otp3' => '3333',
 ]);
-$response->clearOptions();
+$response->removeOptions([
+    'otp2' => '2222',
+    'otp3' => '3333',
+    'otp4' => '4444',
+    'otp5' => '5555',
+]);
+
+# Example items parameters
+$response->setItem('item1', [
+    'id' => 1,
+    'name' => 'name one',
+    'price' => 6.50,
+    'stock' => 99
+]);
+$response->clearItems();
 ```
 
 ## Debug
