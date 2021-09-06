@@ -74,6 +74,7 @@ class Response
 	const FIELD_HTML = 'html';
 	const FIELD_DATAS = 'datas';
 	const FIELD_CONFIGS = 'configs';
+	const FIELD_ITEMS = 'items';
 	const FIELD_OPTIONS = 'options';
 	const FIELD_TEXTS = 'texts';
 	const FIELD_LOGS = 'logs';
@@ -407,6 +408,9 @@ class Response
 	protected $configs = [];
 
 	/** @var array */
+	protected $items = [];
+
+	/** @var array */
 	protected $options = [];
 
 	/** @var array */
@@ -527,6 +531,7 @@ class Response
 		$this->delay = null;
 		$this->interval = null;
 		$this->datas = [];
+		$this->items = [];
 		$this->options = [];
 		$this->texts = [];
 		$this->logs = [];
@@ -602,6 +607,7 @@ class Response
 			static::FIELD_HTML => $this->html,
 			static::FIELD_DATAS => $this->datas,
 			static::FIELD_CONFIGS => $this->configs,
+			static::FIELD_ITEMS => $this->items,
 			static::FIELD_OPTIONS => $this->options,
 			static::FIELD_TEXTS => $this->texts,
 			static::FIELD_LOGS => $this->logs,
@@ -2142,6 +2148,107 @@ class Response
 	public function getOption(string $key, $default = null)
 	{
 		return $this->options[$key] ?? $default;
+	}
+
+	/**
+	 * @param array $items
+	 * @return $this
+	 */
+	public function setItems(array $items): Response
+	{
+		$this->items = $items;
+		return $this;
+	}
+
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function setItem(string $key, $value): Response
+	{
+		$this->items[$key] = $value;
+		return $this;
+	}
+
+	/**
+	 * @param array $items
+	 * @return $this
+	 */
+	public function addItems(array $items): Response
+	{
+		$this->items = array_merge($this->items, $items);
+		return $this;
+	}
+
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function addItem(string $key, $value): Response
+	{
+		if(isset($this->items[$key])) {
+			if(!is_array($this->items[$key])) {
+				$this->items[$key] = [$this->items[$key]];
+			}
+			$this->items[$key][] = $value;
+		}
+		else {
+			$this->items[$key] = $value;
+		}
+		return $this;
+	}
+
+	/**
+	 * @param array $items
+	 * @param bool $keys [optional]
+	 * @return $this
+	 */
+	public function removeItems(array $items, bool $keys = false): Response
+	{
+		if($keys) {
+			$items = array_keys($items);
+		}
+		$this->items = array_diff_key($this->items, $items);
+		return $this;
+	}
+
+	/**
+	 * @param string $key
+	 * @return $this
+	 */
+	public function removeItem(string $key): Response
+	{
+		unset($this->items[$key]);
+		return $this;
+	}
+
+	/**
+	 * @return $this
+	 */
+	public function clearItems(): Response
+	{
+		$this->items = [];
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getItems(): array
+	{
+		return $this->items;
+	}
+
+	/**
+	 * @param string $key
+	 * @param mixed $default [optional]
+	 * @return mixed
+	 */
+	public function getItem(string $key, $default = null)
+	{
+		return $this->items[$key] ?? $default;
 	}
 
 	/**
