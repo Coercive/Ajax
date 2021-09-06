@@ -146,9 +146,21 @@ $response->setDatas([
         ]
     ]
 ]);
-$response->addData('forgoten', 'this one');
+$response->setData('forgoten', 'this one');
 $response->removeData('additional_item_title');
 // etc...
+
+# Automatic array if several elements with the 'add...' method
+$response->addData('array_element', 'content1');
+$response->addData('array_element', 'content2');
+$response->addData('array_element', 'content3');
+// datas: {
+//     array_element: [
+//         "content1",
+//         "content2",
+//         "content3"
+//     ]
+// }
 
 # Example text parameters
 $response->setTexts([

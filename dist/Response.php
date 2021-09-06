@@ -1852,6 +1852,17 @@ class Response
 	}
 
 	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function setConfig(string $key, $value): Response
+	{
+		$this->configs[$key] = $value;
+		return $this;
+	}
+
+	/**
 	 * @param array $configs
 	 * @return $this
 	 */
@@ -1868,7 +1879,15 @@ class Response
 	 */
 	public function addConfig(string $key, $value): Response
 	{
-		$this->configs[$key] = $value;
+		if(isset($this->configs[$key])) {
+			if(!is_array($this->configs[$key])) {
+				$this->configs[$key] = [$this->configs[$key]];
+			}
+			$this->configs[$key][] = $value;
+		}
+		else {
+			$this->configs[$key] = $value;
+		}
 		return $this;
 	}
 
@@ -1934,6 +1953,17 @@ class Response
 	}
 
 	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function setData(string $key, $value): Response
+	{
+		$this->datas[$key] = $value;
+		return $this;
+	}
+
+	/**
 	 * @param array $datas
 	 * @return $this
 	 */
@@ -1950,7 +1980,15 @@ class Response
 	 */
 	public function addData(string $key, $value): Response
 	{
-		$this->datas[$key] = $value;
+		if(isset($this->datas[$key])) {
+			if(!is_array($this->datas[$key])) {
+				$this->datas[$key] = [$this->datas[$key]];
+			}
+			$this->datas[$key][] = $value;
+		}
+		else {
+			$this->datas[$key] = $value;
+		}
 		return $this;
 	}
 
@@ -2016,6 +2054,17 @@ class Response
 	}
 
 	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function setOption(string $key, $value): Response
+	{
+		$this->options[$key] = $value;
+		return $this;
+	}
+
+	/**
 	 * @param array $options
 	 * @return $this
 	 */
@@ -2032,7 +2081,15 @@ class Response
 	 */
 	public function addOption(string $key, $value): Response
 	{
-		$this->options[$key] = $value;
+		if(isset($this->options[$key])) {
+			if(!is_array($this->options[$key])) {
+				$this->options[$key] = [$this->options[$key]];
+			}
+			$this->options[$key][] = $value;
+		}
+		else {
+			$this->options[$key] = $value;
+		}
 		return $this;
 	}
 
@@ -2098,6 +2155,17 @@ class Response
 	}
 
 	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function setText(string $key, $value): Response
+	{
+		$this->texts[$key] = $value;
+		return $this;
+	}
+
+	/**
 	 * @param array $texts
 	 * @return $this
 	 */
@@ -2114,7 +2182,15 @@ class Response
 	 */
 	public function addText(string $key, $value): Response
 	{
-		$this->texts[$key] = $value;
+		if(isset($this->texts[$key])) {
+			if(!is_array($this->texts[$key])) {
+				$this->texts[$key] = [$this->texts[$key]];
+			}
+			$this->texts[$key][] = $value;
+		}
+		else {
+			$this->texts[$key] = $value;
+		}
 		return $this;
 	}
 
@@ -2180,6 +2256,17 @@ class Response
 	}
 
 	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
+	public function setLog(string $key, $value): Response
+	{
+		$this->logs[$key] = $value;
+		return $this;
+	}
+
+	/**
 	 * @param array $logs
 	 * @return $this
 	 */
@@ -2196,7 +2283,15 @@ class Response
 	 */
 	public function addLog(string $key, $value): Response
 	{
-		$this->logs[$key] = $value;
+		if(isset($this->logs[$key])) {
+			if(!is_array($this->logs[$key])) {
+				$this->logs[$key] = [$this->logs[$key]];
+			}
+			$this->logs[$key][] = $value;
+		}
+		else {
+			$this->logs[$key] = $value;
+		}
 		return $this;
 	}
 
