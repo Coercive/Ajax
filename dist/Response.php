@@ -687,7 +687,6 @@ class Response
 		else {
 			HeaderStatus::send($failure);
 			header('Content-Type: text/plain');
-			echo $json;
 			return false;
 		}
 	}
