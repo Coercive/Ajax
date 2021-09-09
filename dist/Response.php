@@ -79,26 +79,6 @@ class Response
 	const FIELD_TEXTS = 'texts';
 	const FIELD_LOGS = 'logs';
 
-	/**
-	 * Reload options
-	 *
-	 * @var string|string[]
-	 */
-	const RELOAD_TYPE_CONTENT = 'content';
-	const RELOAD_TYPE_PAGE = 'page';
-	const RELOAD_TYPE_HARD = 'hard';
-	const RELOAD_TYPES = [
-		self::RELOAD_TYPE_CONTENT,
-		self::RELOAD_TYPE_PAGE,
-		self::RELOAD_TYPE_HARD,
-	];
-	const RELOAD_METHOD_AUTO = 'auto';
-	const RELOAD_METHOD_USER = 'user';
-	const RELOAD_METHODS = [
-		self::RELOAD_METHOD_AUTO,
-		self::RELOAD_METHOD_USER,
-	];
-
 	# CONFIG
 
 	/** @var bool */
