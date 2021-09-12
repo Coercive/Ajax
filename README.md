@@ -31,8 +31,11 @@ $response->httpResponseCodes(203, 501);
 // Useful if you always want to send OK 200 to your JS app
 $response->httpResponseCodes(200, 200);
 
-// Reset all parametters, but not the defaults options and settings options
+// Reset all parametters, but not the defaults options
 $response->reset();
+
+// It's possible to list fields to keep
+$response->reset(['id', 'name', 'config']);
 ```
 
 ## Export
@@ -109,7 +112,7 @@ $response
     // etc...
 ```
 
-## Custom parameters
+## Data parameters
 
 ```php
 use Coercive\Utility\Ajax\Response;
@@ -125,8 +128,6 @@ $config = $response->getConfigs();
 $remote = $response->getConfig('remote');
 $notExist = $response->getConfig('notExist', 'default_value');
 // etc...
-
-// This config parameters will not be reseted by reset() method.
 
 # Example data parameters
 $response->setDatas([
@@ -190,6 +191,59 @@ $response->setItem('item1', [
     'stock' => 99
 ]);
 $response->clearItems();
+```
+
+## Custom parameters (generic accessors)
+
+```php
+use Coercive\Utility\Ajax\Response;
+$response = new Response;
+
+# Global setter
+$response->set('entry_name', [
+    'key' => 'value'
+]);
+$response->set('other_entry_name', 'value');
+
+# Example merge
+$response->merge('entry_name', [
+    'additional_info' => 'value'
+]);
+
+# Example insert
+$response->insert('entry_name', 'forgoten', 'value');
+
+# Example add, automatic array if several elements with the 'add...' method
+$response->add('array_element', 'example_key', 'content1');
+$response->add('array_element', 'example_key', 'content2');
+$response->add('array_element', 'example_key', 'content3');
+// array_element: {
+//     example_key: [
+//         "content1",
+//         "content2",
+//         "content3"
+//     ]
+// }
+
+# Example drop parameters
+$response->set('options', [
+    'otp1' => '1111',
+    'otp2' => '2222',
+    'otp3' => '3333',
+]);
+$response->drop('options', [
+    'otp2' => '2222',
+    'otp3' => '3333',
+    'otp4' => '4444',
+    'otp5' => '5555',
+]);
+$response->remove('options', 'otp1');
+
+# Example getter
+$value = $response->get('key');
+$value = $response->target('array_element', 'example_key');
+$notExist = $response->get('notExist', 'default_value');
+$notExist = $response->target('array_element', 'notExist', 'default_value');
 ```
 
 ## Debug
