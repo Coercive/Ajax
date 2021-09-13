@@ -144,7 +144,23 @@ class TightResponse
 			}
 		}
 
-		if (!$this->skipNull) {
+		if ($this->skipNull) {
+			$arr = array_filter($arr, function($v, $k) use ($requiredFields) {
+				if($requiredFields && in_array($k, $requiredFields, true)) {
+					return true;
+				}
+				elseif(null === $v) {
+					return false;
+				}
+				elseif(is_array($v) && !$v) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}, ARRAY_FILTER_USE_BOTH);
+		}
+		else {
 			foreach (Fields::getConstants() as $key) {
 				if(!array_key_exists($key, $arr)) {
 					$arr[$key] = null;
