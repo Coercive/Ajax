@@ -246,6 +246,22 @@ $notExist = $response->get('notExist', 'default_value');
 $notExist = $response->target('array_element', 'notExist', 'default_value');
 ```
 
+## Callable
+
+```php
+use Coercive\Utility\Ajax\Response;
+
+$response = new Response;
+
+$response->callAfterArray(function ($arr) {
+    var_dump($arr); # do something
+});
+
+$response->callAfterJson(function ($json) {
+    var_dump($json); # do something
+});
+```
+
 ## Debug
 
 ```php

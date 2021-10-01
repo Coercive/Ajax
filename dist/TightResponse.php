@@ -30,6 +30,14 @@ class TightResponse
 
 	protected int $failureHttpResponseCode = 500;
 
+	# CALLBACKS
+
+	/** @var callable */
+	protected $callAfterArray = null;
+
+	/** @var callable */
+	protected $callAfterJson = null;
+
 	# DATAS STORAGE
 
 	protected ? bool $status = null;
@@ -52,6 +60,30 @@ class TightResponse
 
 	/** @var string json error message for debug */
 	private string $jsonLastErrorMessage = '';
+
+	/**
+	 * Inject a function that be called just after array() compilation
+	 *
+	 * @param callable|null $function
+	 * @return $this
+	 */
+	public function callAfterArray(? callable $function = null): TightResponse
+	{
+		$this->callAfterArray = $function;
+		return $this;
+	}
+
+	/**
+	 * Inject a function that be called just after json() compilation
+	 *
+	 * @param callable|null $function
+	 * @return $this
+	 */
+	public function callAfterJson(? callable $function = null): TightResponse
+	{
+		$this->callAfterJson = $function;
+		return $this;
+	}
 
 	/**
 	 * Export full data, or only setted data
@@ -168,6 +200,9 @@ class TightResponse
 			}
 		}
 
+		if(null !== $this->callAfterArray) {
+			($this->callAfterArray)($arr);
+		}
 		return $arr;
 	}
 
@@ -182,6 +217,9 @@ class TightResponse
 		$this->jsonLastErrorCode = json_last_error();
 		$this->jsonLastErrorStatus = $this->jsonLastErrorCode !== JSON_ERROR_NONE;
 		$this->jsonLastErrorMessage = (string) json_last_error_msg();
+		if(null !== $this->callAfterJson) {
+			($this->callAfterJson)($json);
+		}
 		return $json;
 	}
 
