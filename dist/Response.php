@@ -616,7 +616,7 @@ class Response extends TightResponse
 	 */
 	public function setLanguage(string $value): Response
 	{
-		return $this->set(Fields::FIELD_CLASS, $value);
+		return $this->set(Fields::FIELD_LANGUAGE, $value);
 	}
 
 	/**
