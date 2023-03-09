@@ -632,6 +632,15 @@ class Response extends TightResponse
 	 * @param string $value
 	 * @return $this
 	 */
+	public function setField(string $value): Response
+	{
+		return $this->set(Fields::FIELD_FIELD, $value);
+	}
+
+	/**
+	 * @param string $value
+	 * @return $this
+	 */
 	public function setName(string $value): Response
 	{
 		return $this->set(Fields::FIELD_NAME, $value);

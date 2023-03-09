@@ -25,6 +25,7 @@ class Fields
 	const FIELD_LANGUAGE = 'language';
 	const FIELD_NAME = 'name';
 	const FIELD_TYPE = 'type';
+	const FIELD_FIELD = 'field';
 	const FIELD_EVENT = 'event';
 	const FIELD_EVENT_TYPE = 'event_type';
 	const FIELD_SURTITLE = 'surtitle';
