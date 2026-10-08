@@ -6,6 +6,17 @@
 composer require coercive/ajax
 ```
 
+Compatible PHP 7.4 → 8.5
+
+## Tests
+
+```
+composer install
+vendor/bin/phpunit
+```
+
+PHPUnit 12 requires PHP 8.3+ to run the tests ; the library itself still runs on PHP 7.4.
+
 ## Config
 
 ```php

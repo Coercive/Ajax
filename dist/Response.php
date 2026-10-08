@@ -373,7 +373,7 @@ class Response extends TightResponse
 	 */
 	public function setDefaultConfirmLabel(string $label): Response
 	{
-		return $this->setDefault(Fields::FIELD_CONFIRM, $label);
+		return $this->setDefault(Fields::FIELD_CONFIRM_LABEL, $label);
 	}
 
 	/**
@@ -382,7 +382,7 @@ class Response extends TightResponse
 	 */
 	public function setDefaultSuccessConfirmLabel(string $label): Response
 	{
-		return $this->setDefault(Fields::FIELD_CONFIRM, $label, true);
+		return $this->setDefault(Fields::FIELD_CONFIRM_LABEL, $label, true);
 	}
 
 	/**
@@ -391,7 +391,7 @@ class Response extends TightResponse
 	 */
 	public function setDefaultFailureConfirmLabel(string $label): Response
 	{
-		return $this->setDefault(Fields::FIELD_CONFIRM, $label, false);
+		return $this->setDefault(Fields::FIELD_CONFIRM_LABEL, $label, false);
 	}
 
 	/**
@@ -832,7 +832,7 @@ class Response extends TightResponse
 	 */
 	public function setOpenLabel(string $value): Response
 	{
-		return $this->set(Fields::FIELD_CLOSE_LABEL, $value);
+		return $this->set(Fields::FIELD_OPEN_LABEL, $value);
 	}
 
 	/**

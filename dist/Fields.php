@@ -83,11 +83,12 @@ class Fields
 	 */
 	static public function getConstants(): array
 	{
-		static $classes = null;
-		if(null === $classes) {
+		# Cache by class : since PHP 8.1, static variables are shared between parent and child classes
+		static $classes = [];
+		if(!isset($classes[static::class])) {
 			$reflectionClass = new ReflectionClass(static::class);
-			$classes = $reflectionClass->getConstants();
+			$classes[static::class] = $reflectionClass->getConstants();
 		}
-		return $classes;
+		return $classes[static::class];
 	}
 }

@@ -32,10 +32,10 @@ class TightResponse
 
 	# CALLBACKS
 
-	/** @var callable */
+	/** @var callable|null */
 	protected $callAfterArray = null;
 
-	/** @var callable */
+	/** @var callable|null */
 	protected $callAfterJson = null;
 
 	# DATAS STORAGE
@@ -228,7 +228,7 @@ class TightResponse
 	 *
 	 * @return string
 	 */
-	public function __toString()
+	public function __toString(): string
 	{
 		return $this->json();
 	}
@@ -237,11 +237,11 @@ class TightResponse
 	 * Output JSON with customizables CleanBuffer + HttpResponseCode + Header Content-Type
 	 *
 	 * @param bool $clear [optional] Clean outpout buffer before sending JSON
-	 * @param int $success [optional] Http Response Code in case of successful compilation of the JSON
-	 * @param int $failure [optional] Http Response Code in case of failure of compilation of the JSON
+	 * @param int|null $success [optional] Http Response Code in case of successful compilation of the JSON
+	 * @param int|null $failure [optional] Http Response Code in case of failure of compilation of the JSON
 	 * @return bool
 	 */
-	public function send(bool $clear = true, int $success = null, int $failure = null): bool
+	public function send(bool $clear = true, ? int $success = null, ? int $failure = null): bool
 	{
 		$json = $this->json();
 		if(null === $success) {
@@ -406,7 +406,7 @@ class TightResponse
 	 */
 	public function isSuccess(): bool
 	{
-		return $this->status;
+		return true === $this->status;
 	}
 
 	/**

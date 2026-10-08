@@ -12,12 +12,18 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.4",
         "ext-json": "*",
         "coercive/headerstatus": "^1"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^12"
+    },
     "autoload": {
         "psr-4": { "Coercive\\Utility\\Ajax\\": "dist/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Coercive\\Utility\\Ajax\\Tests\\": "tests/" }
     },
     "minimum-stability" : "dev",
     "prefer-stable" : true
