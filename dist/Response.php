@@ -1072,13 +1072,15 @@ class Response extends TightResponse
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * Remove several configs
+	 *
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function removeConfigs(array $list, bool $keys = false): TightResponse
+	public function removeConfigs(array $list, bool $useKeys = false): TightResponse
 	{
-		return $this->drop(Fields::FIELD_CONFIGS, $list, $keys);
+		return $this->drop(Fields::FIELD_CONFIGS, $list, $useKeys);
 	}
 
 	/**
@@ -1155,13 +1157,15 @@ class Response extends TightResponse
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * Remove several datas
+	 *
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function removeDatas(array $list, bool $keys = false): TightResponse
+	public function removeDatas(array $list, bool $useKeys = false): TightResponse
 	{
-		return $this->drop(Fields::FIELD_DATAS, $list, $keys);
+		return $this->drop(Fields::FIELD_DATAS, $list, $useKeys);
 	}
 
 	/**
@@ -1238,13 +1242,15 @@ class Response extends TightResponse
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * Remove several options
+	 *
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function removeOptions(array $list, bool $keys = false): Response
+	public function removeOptions(array $list, bool $useKeys = false): Response
 	{
-		return $this->drop(Fields::FIELD_OPTIONS, $list, $keys);
+		return $this->drop(Fields::FIELD_OPTIONS, $list, $useKeys);
 	}
 
 	/**
@@ -1321,13 +1327,15 @@ class Response extends TightResponse
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * Remove several items
+	 *
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function removeItems(array $list, bool $keys = false): Response
+	public function removeItems(array $list, bool $useKeys = false): Response
 	{
-		return $this->drop(Fields::FIELD_ITEMS, $list, $keys);
+		return $this->drop(Fields::FIELD_ITEMS, $list, $useKeys);
 	}
 
 	/**
@@ -1404,13 +1412,15 @@ class Response extends TightResponse
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * Remove several texts
+	 *
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function removeTexts(array $list, bool $keys = false): Response
+	public function removeTexts(array $list, bool $useKeys = false): Response
 	{
-		return $this->drop(Fields::FIELD_TEXTS, $list, $keys);
+		return $this->drop(Fields::FIELD_TEXTS, $list, $useKeys);
 	}
 
 	/**
@@ -1487,13 +1497,15 @@ class Response extends TightResponse
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * Remove several logs
+	 *
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function removeLogs(array $list, bool $keys = false): Response
+	public function removeLogs(array $list, bool $useKeys = false): Response
 	{
-		return $this->drop(Fields::FIELD_LOGS, $list, $keys);
+		return $this->drop(Fields::FIELD_LOGS, $list, $useKeys);
 	}
 
 	/**

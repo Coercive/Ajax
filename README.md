@@ -187,12 +187,12 @@ $response->setOptions([
     'otp2' => '2222',
     'otp3' => '3333',
 ]);
-$response->removeOptions([
-    'otp2' => '2222',
-    'otp3' => '3333',
-    'otp4' => '4444',
-    'otp5' => '5555',
-]);
+// Remove by key names (unknown keys are ignored)
+$response->removeOptions(['otp2', 'otp4']);
+
+// Remove the keys of an associative array (its values are ignored)
+$response->removeOptions(['otp3' => '3333', 'otp5' => '5555'], true);
+// PHP 8+ : $response->removeOptions($list, useKeys: true);
 
 # Example items parameters
 $response->setItem('item1', [
@@ -242,12 +242,12 @@ $response->set('options', [
     'otp2' => '2222',
     'otp3' => '3333',
 ]);
-$response->drop('options', [
-    'otp2' => '2222',
-    'otp3' => '3333',
-    'otp4' => '4444',
-    'otp5' => '5555',
-]);
+// Remove by key names (unknown keys are ignored)
+$response->drop('options', ['otp2', 'otp4']);
+
+// Remove the keys of an associative array (its values are ignored)
+$response->drop('options', ['otp3' => '3333', 'otp5' => '5555'], true);
+// PHP 8+ : $response->drop('options', $list, useKeys: true);
 $response->remove('options', 'otp1');
 
 # Example getter

@@ -79,16 +79,39 @@ final class TightResponseTest extends TestCase
 		$this->assertNull($r->target('list', 'd'));
 		$this->assertSame('x', $r->target('list', 'd', 'x'));
 
-		$r->drop('list', ['a' => true]);
+		$r->drop('list', ['a']);
 		$this->assertSame(['b' => 2, 'c' => [3, 4]], $r->get('list'));
+
+		$r->drop('list', ['c' => 'whatever'], true);
+		$this->assertSame(['b' => 2], $r->get('list'));
 
 		$this->assertSame('none', $r->get('unknown', 'none'));
 	}
 
+	public function testDrop(): void
+	{
+		$data = ['a' => 1, 'b' => 2, 'c' => 3, 0 => 'zero', 1 => 'one'];
+		$drop = function (array $list, bool $useKeys = false) use ($data): array {
+			return (new TightResponse)->set('list', $data)->drop('list', $list, $useKeys)->get('list');
+		};
+
+		# List of key names (default)
+		$this->assertSame(['c' => 3, 0 => 'zero', 1 => 'one'], $drop(['a', 'b']));
+		$this->assertSame(['a' => 1, 'b' => 2, 'c' => 3], $drop([0, 1]));
+		$this->assertSame($data, $drop(['unknown']));
+		$this->assertSame($data, $drop([]));
+
+		# Associative array : use its keys, ignore its values
+		$this->assertSame(['c' => 3, 0 => 'zero', 1 => 'one'], $drop(['a' => 'x', 'b' => 'y'], true));
+		$this->assertSame(['a' => 1, 'b' => 2, 'c' => 3], $drop(['a', 'b'], true));
+		$this->assertSame($data, $drop([], true));
+	}
+
 	public function testDropOnUnknownField(): void
 	{
-		$r = (new TightResponse)->drop('unknown', ['a' => 1]);
-		$this->assertSame([], $r->get('unknown'));
+		$r = (new TightResponse)->skipNull(false)->drop(Fields::FIELD_DATAS, ['a']);
+		$this->assertNull($r->get(Fields::FIELD_DATAS));
+		$this->assertNull($r->array()[Fields::FIELD_DATAS]);
 	}
 
 	public function testReset(): void

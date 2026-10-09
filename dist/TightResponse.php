@@ -345,17 +345,26 @@ class TightResponse
 	}
 
 	/**
+	 * Remove several keys from an array field
+	 *
+	 * By default, $list is the list of key names to remove :
+	 *     drop('options', ['opt2', 'opt3']);
+	 *
+	 * With $useKeys, the keys of $list are used and its values are ignored.
+	 * Useful to remove the entries of an existing associative array :
+	 *     drop('options', ['opt2' => 'value', 'opt3' => 'value'], true);
+	 *
 	 * @param string $field
-	 * @param array $list
-	 * @param bool $keys [optional]
+	 * @param array $list Key names to remove, or associative array if $useKeys
+	 * @param bool $useKeys [optional] Use the keys of $list instead of its values
 	 * @return $this
 	 */
-	public function drop(string $field, array $list, bool $keys = false): TightResponse
+	public function drop(string $field, array $list, bool $useKeys = false): TightResponse
 	{
-		if($keys) {
-			$list = array_keys($list);
+		if(!isset($this->datas[$field])) {
+			return $this;
 		}
-		$this->datas[$field] = array_diff_key($this->datas[$field] ?? [], $list);
+		$this->datas[$field] = array_diff_key($this->datas[$field], $useKeys ? $list : array_flip($list));
 		return $this;
 	}
 

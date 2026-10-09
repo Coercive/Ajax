@@ -110,8 +110,12 @@ final class ResponseTest extends TestCase
 		$this->assertSame(['a' => 1, 'b' => 2, 'c' => [3, 4]], $r->array()[$field]);
 
 		$r->{"remove$name"}('b');
-		$r->{"remove$plural"}(['a' => true]);
+		$r->{"remove$plural"}(['a']);
 		$this->assertSame(['c' => [3, 4]], $r->{"get$plural"}());
+
+		$r->{"add$plural"}(['d' => 5, 'e' => 6]);
+		$r->{"remove$plural"}(['c' => 'whatever', 'd' => 'whatever'], true);
+		$this->assertSame(['e' => 6], $r->{"get$plural"}());
 
 		$r->{"clear$plural"}();
 		$this->assertSame([], $r->{"get$plural"}());
